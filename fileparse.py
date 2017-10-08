@@ -15,9 +15,10 @@ from twilio.rest import Client
 
 ACCOUNT_SID = ""
 AUTH_TOKEN = ""
-CLIENT = Client(ACCOUNT_SID, AUTH_TOKEN)
+#CLIENT = Client(ACCOUNT_SID, AUTH_TOKEN)
 
-FILE = "data.csv"
+FILE = os.path.join(os.path.dirname(__file__), "data.csv")
+
 
 class Alert(NamedTuple):
     alert_type: str
@@ -34,8 +35,21 @@ def create_alert(row):
         loc_str = ''
     return Alert(row[0], f"{row[2]} {row[3]}", loc_str, row[5], generate_audio_alert(row[2], fuzz_location(loc), row[0], row[5]))
 
+EMOJI_MAP = {
+    "CAMERA ALERT": "📷",
+    "GROUND SENSOR ALERT": "👣🐾",
+    "RANGER EMERGENCY ALERT": "👮🎆",
+    "ARMED INTRUDER": "🔫"
+}
+
 def generate_audio_alert(time, location, alert_type=None, context=None):
-    return f"THREAT ALERT. {time}. {location}. {context or alert_type or ''}"
+    return f"THREAT ALERT. {time}. WATERHOLE 6. {context or alert_type or ''}"
+
+def generate_sms(alert):
+    alert_emoji = EMOJI_MAP.get(alert.alert_type, alert.alert_type)
+    context_emoji = EMOJI_MAP.get(alert.context, alert.context)
+
+    return f"‼️ {alert_emoji or ''} {context_emoji or ''} WATERHOLE 6 {alert.time}"
 
 def fuzz_location(latlon):
     if latlon:
@@ -80,7 +94,7 @@ async def watch_file(websocket, path):
                         # CLIENT.api.account.messages.create(
                         #     to="+447786820992",
                         #     from_="+441746802047",
-                        #     body=alert.audio_message)
+                        #     body=generate_sms(alert))
                     sent_alerts.add(alert)
 
 
