@@ -1,0 +1,17 @@
+argh==0.26.2
+certifi==2017.7.27.1
+chardet==3.0.4
+idna==2.6
+LatLon23==1.0.7
+pathtools==0.1.2
+PyJWT==1.5.3
+pyproj==1.9.5.1
+PySocks==1.6.7
+pytz==2017.2
+PyYAML==3.12
+requests==2.18.4
+six==1.11.0
+twilio==6.7.1
+urllib3==1.22
+utm==0.4.2
+websockets==3.4
