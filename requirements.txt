@@ -8,7 +8,7 @@ PyJWT==1.5.3
 pyproj==1.9.5.1
 PySocks==1.6.7
 pytz==2017.2
-PyYAML==3.12
+PyYAML==5.4
 requests==2.18.4
 six==1.11.0
 twilio==6.7.1
