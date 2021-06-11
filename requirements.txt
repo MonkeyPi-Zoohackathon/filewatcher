@@ -14,4 +14,4 @@ six==1.11.0
 twilio==6.7.1
 urllib3==1.22
 utm==0.4.2
-websockets==3.4
+websockets==9.1
