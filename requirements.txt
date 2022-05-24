@@ -4,7 +4,7 @@ chardet==3.0.4
 idna==2.6
 LatLon23==1.0.7
 pathtools==0.1.2
-PyJWT==1.5.3
+PyJWT==2.4.0
 pyproj==1.9.5.1
 PySocks==1.6.7
 pytz==2017.2
